@@ -1,0 +1,6 @@
+<% if session[:rand_ph].length == 10 %>
+  alert("All Phrases are selected!");
+<% else %>
+$('.phrases').prepend("<div class=\"panel panel-primary\"><div class=\"panel-body\">sample phrase number <%=j @new_phrase %><\/div><\/div>");
+$('.phrases-left span').html("<%= (10 - session[:rand_ph].length) %>");
+<% end %>

@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="col-md-4 centered-col">
+    <a class="btn btn-primary phrase-manipulation-btn" onclick="getNewPhrase()">Get new phrase!</a>
+    <a class="btn btn-danger phrase-manipulation-btn" onclick="clearPhrases()">Clear phrases.</a>
+    <h2 class="phrases-left">There are <span><%= session[:rand_ph].nil? ? "10" : 10 - session[:rand_ph].length %></span> phrases left in the database.</h2>
+    <div class="phrases">
+      <% unless session[:rand_ph].nil? %>
+          <% session[:rand_ph].split("").each do |s| %>
+              <div class="panel panel-primary">
+                <div class="panel-body">sample phrase number <%= s %></div>
+              </div>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  function getNewPhrase() {
+    var url = "<%= root_url %>rand_ph";
+    $.ajax({
+      url: url,
+      type: "get",
+      dataType: 'script'
+    });
+  }
+
+  function clearPhrases() {
+    var url = "<%= root_url %>clear_ph";
+    $.ajax({
+      url: url,
+      type: "get",
+      dataType: 'script'
+    });
+  }
+</script>
